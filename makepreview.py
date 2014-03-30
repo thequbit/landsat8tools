@@ -12,7 +12,7 @@ class MakePreview(object):
 
     def makepreview(self,imagename):
 
-        cmd = "convert ./{0}/{0}_RGB.TIF ./{0}/{0}_RGB_PREVIEW.JPG".format(imagename)
+        cmd = "convert ./{0}/{0}_RGB.TIF ./{0}/{0}_PREVIEW.JPG".format(imagename)
 
         if self.DEBUG:
             print "Creating preview image ..."
