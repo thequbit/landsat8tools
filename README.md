@@ -17,7 +17,19 @@ Then clone this repo:
 
     > git clone https://github.com/thequbit/landsat8tools
 
+
+###USGS Earth Explorer Credentials###
+
+You will need a login for the USGS Earth Explorer software to use these tools.  You can get a login by going here:
+
+http://earthexplorer.usgs.gov/
+
+Once you have created a login, you can continue the next section.
+
+
 ###Hacking Instructions###
+
+First, edit the "creds.txt" file to be your username and password for earth explorer.
 
 There are three steps: download, uncompress, make RGB, and make preview.  Here is how you can use the files from the command prompt:
 
