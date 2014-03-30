@@ -82,9 +82,9 @@ if __name__ == '__main__':
         prev.makepreview(imagename)
 
         #cleanup
-        os.system('rm ./{0}/*_PROJECTED*')
-        os.system('rm ./{0}/*_RGB*') 
-        #os.system('ls')
+        os.system("rm ./{0}/*_B*.TIF".format(imagename))
+        #os.system("rm ./{0}/*_PROJECTED*".format(imagename))
+        #os.system('rm ./{0}/*_RGB*') 
 
         print "Done with {0}".format(imagename)
 
