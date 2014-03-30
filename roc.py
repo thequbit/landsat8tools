@@ -1,3 +1,5 @@
+import os
+
 from download import Downloader
 from uncompress import Uncompresser
 from makergb import MakeRGB
@@ -20,54 +22,56 @@ if __name__ == '__main__':
     prefix = 'LC8016030'
     postfix = 'LGN01'
     images = [
-        '2013102', # April 12t, 2013
-        '2013118',
-        '2013134',
-        '2013150',
-        '2013157',
-        '2013166',
-        '2013173',
-        '2013182',
-        '2013189',
-        '2013198',
-        '2013205',
-        '2013214',
-        '2013221',
-        '2013230',
-        '2013237',
-        '2013246',
-        '2013253',
-        '2013262',
-        '2013269',
-        '2013278',
-        '2013285',
-        '2013294',
-        '2013301',
-        '2013310',
-        '2013317',
-        '2013326',
-        '2013333',
-        '2013342',
-        '2013349',
-        '2013358',
-        '2013365',
-        '2014009',
-        '2014016',
-        '2014025',
-        '2014032',
-        '2014041',
-        '2014048',
-        '2014057',
-        '2014064',
-        '2014073',
-        '2014080', # Marth 21st, 2014
+        '2013102LGN01', # April 12t, 2013
+        '2013118LGN02',
+        '2013134LGN03',
+        '2013150LGN00',
+        '2013157LGN00',
+        '2013166LGN00',
+        '2013173LGN00',
+        '2013182LGN00',
+        '2013189LGN00',
+        '2013198LGN00',
+        '2013205LGN00',
+        '2013214LGN00',
+        '2013221LGN00',
+        '2013230LGN00',
+        '2013237LGN00',
+        '2013246LGN00',
+        '2013253LGN00',
+        '2013262LGN00',
+        '2013269LGN00',
+        '2013278LGN00',
+        '2013285LGN00',
+        '2013294LGN00',
+        '2013301LGN00',
+        '2013310LGN00',
+        '2013317LGN00',
+        '2013326LGN00',
+        '2013333LGN00',
+        '2013342LGN00',
+        '2013349LGN00',
+        '2013358LGN00',
+        '2013365LGN00',
+        '2014009LGN00',
+        '2014016LGN00',
+        '2014025LGN00',
+        '2014032LGN00',
+        '2014041LGN00',
+        '2014048LGN00',
+        '2014057LGN00',
+        '2014064LGN00',
+        '2014073LGN00',
+        '2014080LGN00', # Marth 21st, 2014
     ]
 
     print "Processing {0} image archives ...".format(len(images))
 
     for image in images:
 
-        imagename = "{0}{1}{2}".format(prefix,image,postfix)
+        imagename = "{0}{1}".format(prefix,image)
+
+        print "Working on '{0}' ...".format(imagename)
 
         dler.download(imagename)
 
@@ -79,8 +83,9 @@ if __name__ == '__main__':
 
         #cleanup
         os.system('rm ./{0}/*_PROJECTED*')
-        os.system('rm ./{0}/*_RGB*')
-        
+        os.system('rm ./{0}/*_RGB*') 
+        #os.system('ls')
+
         print "Done with {0}".format(imagename)
 
     print "Done creating JPEG preview files for all {0} image archives.".format(len(images))
