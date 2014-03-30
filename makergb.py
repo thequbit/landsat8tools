@@ -28,6 +28,10 @@ class MakeRGB(object):
         Band 11 - Thermal Infrared (TIRS) 2 .. 11.50 - 12.51 100
         """
 
+        if os.path.isfile("./{0}/{0}_RGB.TIF".format(imagename)):
+            if self.DEBUG:
+                print "RGB file already exists, skipping."
+            return
 
         cmds = []
 

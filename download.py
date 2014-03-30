@@ -1,5 +1,6 @@
 import sys
 import os
+import os.path
 
 class Downloader(object):
 
@@ -28,6 +29,13 @@ class Downloader(object):
             print "... Done."
 
     def download(self,imagename):
+
+        if os.path.isfile("{0}.tar.gz".format(imagename)):
+
+            if self.DEBUG:
+                print "File exists, skipping."
+
+            return
 
         self._login()
 

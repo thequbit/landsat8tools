@@ -12,6 +12,11 @@ class MakePreview(object):
 
     def makepreview(self,imagename):
 
+        if os.path.isfile("./{0}/{0}_PREVIEW.JPG".format(imagename)):
+            if self.DEBUG:
+                print "Preview image already exists, skipping."
+            return 
+
         cmd = "convert ./{0}/{0}_RGB.TIF ./{0}/{0}_PREVIEW.JPG".format(imagename)
 
         if self.DEBUG:
