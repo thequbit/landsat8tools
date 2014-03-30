@@ -3,6 +3,10 @@ landsat8tools
 
 A set of tools for working with Landsat 8 data
 
+Much thanks for the work over at mapbox.  There post helped get me started:
+
+https://www.mapbox.com/blog/processing-landsat-8/
+
 ###Background###
 
 The Landsat program is way awesome, and run by the United States Geological Service (USGS)
