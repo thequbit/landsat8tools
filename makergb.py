@@ -10,7 +10,7 @@ class MakeRGB(object):
         if self.DEBUG:
             print "MakePreview() init successfull"
 
-    def makergb(self,imagename,RED=4,GREEN=3,BLUE=2):
+    def makergb(self,imagename,RED=4,GREEN=3,BLUE=2,postfix="CORRECTED"):
 
         """
         Info via: http://landsat.usgs.gov/band_designations_landsat_satellites.php
@@ -41,7 +41,7 @@ class MakeRGB(object):
 
         cmds.append("convert -combine ./{0}/{0}_B{1}_PROJECTED.TIF ./{0}/{0}_B{2}_PROJECTED.TIF ./{0}/{0}_B{3}_PROJECTED.TIF ./{0}/{0}_RGB.TIF".format(imagename,RED,GREEN,BLUE))
 
-        cmds.append("convert -channel B -gamma 0.925 -channel R -gamma 1.03 -channel RGB -sigmoidal-contrast 50x16% ./{0}/{0}_RGB.TIF ./{0}/{0}_CORRECTED.TIF".format(imagename))
+        cmds.append("convert -channel B -gamma 0.925 -channel R -gamma 1.03 -channel RGB -sigmoidal-contrast 50x16% ./{0}/{0}_RGB.TIF ./{0}/{0}_{1}.TIF".format(imagename,postfix))
 
         if self.DEBUG:
             print "Creating combined image ..."
