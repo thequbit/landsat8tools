@@ -17,7 +17,7 @@ class MakePreview(object):
                 print "Preview image already exists, skipping."
             return 
 
-        cmd = "convert ./{0}/{0}_RGB.TIF ./{0}/{0}_PREVIEW.JPG".format(imagename)
+        cmd = "convert ./{0}/{0}_CORRECTED.TIF ./{0}/{0}_PREVIEW.JPG".format(imagename)
 
         if self.DEBUG:
             print "Creating preview image ..."
