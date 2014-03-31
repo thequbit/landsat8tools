@@ -30,7 +30,22 @@ http://earthexplorer.usgs.gov/
 
 Once you have created a login, you can continue the next section.
 
+###Quick And Dirty###
 
+You can give some of the pre-made scripts a try:
+
+This will pull down 41 images for up-state NY
+
+    > python roc.py
+
+This will pull down a single image for Newtown, CT
+
+    > python newtown.py
+
+This will pull down 20 images for Boston, MA
+
+    > python boston.py
+    
 ###Hacking Instructions###
 
 First, edit the "creds.txt" file to be your username and password for earth explorer.
