@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-1.11.1.js"></script>
+    <script src="pace.min.js"></script>
+</head>
+<body>
+
+    <div style="width: 1200px; margin: auto;">
+
+        
+        <div style="float: right">
+            <canvas id="myCanvas" width="800" height="800" style="border:1px solid #d3d3d3;">
+                Your browser does not support the HTML5 canvas tag.
+            </canvas>
+        </div>
+
+        <div style="float: left; width: 25%">
+            
+            Coefficients:</br>
+            Red: <input id="redcoeff" type="number" size="2" value="2.5"></input>
+            Green: <input id="greencoeff" type="number" size="2" value="2.5"></input>
+            Blue: <input id="bluecoeff" type="number" size="2" value="2.5"></input>
+            </br>
+            XOffset: <input id="xoffset" type="number" size="4" value="-1900"></input>
+            YOffset: <input id="yoffset" type="number" size="4" value="-3700"></input>
+            </br>
+            <button onclick="displayImage();">Display</button>
+            </br>
+            
+            <div style="display: inline-block; font-size: 75%;">
+                
+                    Red Channel<br>
+                    <input type="radio" name="redband" value="b1" onclick="displayImage();">Band 1 - Coastal aerosol<br>
+                    <input type="radio" name="redband" value="b2" onclick="displayImage();">Band 2 - Blue<br>
+                    <input type="radio" name="redband" value="b3" onclick="displayImage();">Band 3 - Green<br>
+                    <input type="radio" name="redband" value="b4" onclick="displayImage();" checked="checked" >Band 4 - Red<br>
+                    <input type="radio" name="redband" value="b5" onclick="displayImage();">Band 5 - Near Infrared (NIR)<br>
+                    <input type="radio" name="redband" value="b6" onclick="displayImage();">Band 6 - SWIR 1<br>
+                    <input type="radio" name="redband" value="b7" onclick="displayImage();">Band 7 - SWIR 2<br>
+                    <input type="radio" name="redband" value="b8" onclick="displayImage();">Band 8 - Panchromatic<br>
+                    <input type="radio" name="redband" value="b9" onclick="displayImage();">Band 9 - Cirrus<br>
+                    <input type="radio" name="redband" value="b10" onclick="displayImage();">Band 10 - Thermal Infrared (TIRS) 1<br>
+                    <input type="radio" name="redband" value="b11" onclick="displayImage();">Band 11 - Thermal Infrared (TIRS) 2<br>
+                
+                </br></br>
+                
+                    Green Channel<br>
+                    <input type="radio" name="greenband" value="b1" onclick="displayImage();">Band 1 - Coastal aerosol<br>
+                    <input type="radio" name="greenband" value="b2" onclick="displayImage();">Band 2 - Blue<br>
+                    <input type="radio" name="greenband" value="b3" onclick="displayImage();" checked="checked">Band 3 - Green<br>
+                    <input type="radio" name="greenband" value="b4" onclick="displayImage();">Band 4 - Red<br>
+                    <input type="radio" name="greenband" value="b5" onclick="displayImage();">Band 5 - Near Infrared (NIR)<br>
+                    <input type="radio" name="greenband" value="b6" onclick="displayImage();">Band 6 - SWIR 1<br>
+                    <input type="radio" name="greenband" value="b7" onclick="displayImage();">Band 7 - SWIR 2<br>
+                    <input type="radio" name="greenband" value="b8" onclick="displayImage();">Band 8 - Panchromatic<br>
+                    <input type="radio" name="greenband" value="b9" onclick="displayImage();">Band 9 - Cirrus<br>
+                    <input type="radio" name="greenband" value="b10" onclick="displayImage();">Band 10 - Thermal Infrared (TIRS) 1<br>
+                    <input type="radio" name="greenband" value="b11" onclick="displayImage();">Band 11 - Thermal Infrared (TIRS) 2<br>
+                
+                </br></br>
+                
+                    Blue Channel<br>
+                    <input type="radio" name="blueband" value="b1" onclick="displayImage();">Band 1 - Coastal aerosol<br>
+                    <input type="radio" name="blueband" value="b2" onclick="displayImage();" checked="checked">Band 2 - Blue<br>
+                    <input type="radio" name="blueband" value="b3" onclick="displayImage();">Band 3 - Green<br>
+                    <input type="radio" name="blueband" value="b4" onclick="displayImage();">Band 4 - Red<br>
+                    <input type="radio" name="blueband" value="b5" onclick="displayImage();">Band 5 - Near Infrared (NIR)<br>
+                    <input type="radio" name="blueband" value="b6" onclick="displayImage();">Band 6 - SWIR 1<br>
+                    <input type="radio" name="blueband" value="b7" onclick="displayImage();">Band 7 - SWIR 2<br>
+                    <input type="radio" name="blueband" value="b8" onclick="displayImage();">Band 8 - Panchromatic<br>
+                    <input type="radio" name="blueband" value="b9" onclick="displayImage();">Band 9 - Cirrus<br>
+                    <input type="radio" name="blueband" value="b10" onclick="displayImage();">Band 10 - Thermal Infrared (TIRS) 1<br>
+                    <input type="radio" name="blueband" value="b11" onclick="displayImage();">Band 11 - Thermal Infrared (TIRS) 2<br>
+               
+            </div>
+        
+        </div>
+        
+        <!--
+        <div>
+        
+            <center>
+            <p><strong>Landsat 8 Operational Land Imager (OLI) and Thermal Infrared Sensor  (TIRS) </strong></p>
+      
+      
+            <table cellpadding="0" border="1">
+              <tr>
+                <th><strong>Band </strong></th>
+                <th><strong>Wavelength</strong></th>
+                <th><strong>Useful for mapping</strong></th>
+              </tr>
+              <tr>
+                <td>Band 1 – coastal aerosol</td>
+                <td>0.43-0.45</td>
+                <td>coastal and aerosol studies<strong></strong></td>
+              </tr>
+              <tr>
+                <td>Band 2 – blue</td>
+                <td>0.45-0.51</td>
+                <td>Bathymetric mapping, distinguishing soil from vegetation and deciduous from coniferous vegetation</td>
+              </tr>
+              <tr>
+                <td>Band 3 - green</td>
+                <td>0.53-0.59</td>
+                <td>Emphasizes peak vegetation, which is useful for assessing plant vigor</td>
+              </tr>
+              <tr>
+                <td>Band 4 - red </td>
+                <td>0.64-0.67</td>
+                <td>Discriminates vegetation slopes</td>
+              </tr>
+              <tr>
+                <td>Band 5 - Near    Infrared (NIR)</td>
+                <td>085.-0.88</td>
+                <td>Emphasizes biomass content and shorelines</td>
+              </tr>
+              <tr>
+                <td>Band 6 -    Short-wave Infrared (SWIR) 1</td>
+                <td>1.57-1.65 </td>
+                <td>Discriminates moisture content of soil and    vegetation; penetrates thin clouds</td>
+              </tr>
+              <tr>
+                <td>Band 7 -    Short-wave Infrared (SWIR) 2</td>
+                <td>2.11-2.29 </td>
+                <td>Improved moisture content of soil and    vegetation and  thin cloud penetration</td>
+              </tr>
+              <tr>
+                <td>Band 8 -    Panchromatic </td>
+                <td>.50-.68</td>
+                <td>15 meter resolution, sharper image    definition</td>
+              </tr>
+              <tr>
+                <td>Band 9 – Cirrus</td>
+                <td>1.36 -1.38</td>
+                <td>Improved detection    of cirrus cloud contamination<strong></strong></td>
+              </tr>
+              <tr>
+                <td>Band 10 – TIRS 1</td>
+                <td>10.60 – 11.19</td>
+                <td>100 meter    resolution, thermal mapping and estimated soil moisture<strong></strong></td>
+              </tr>
+              <tr>
+                <td>Band 11 – TIRS 2</td>
+                <td>11.5-12.51</td>
+                <td>100 meter    resolution, Improved thermal mapping and estimated soil moisture<strong></strong></td>
+              </tr>
+            </table>
+
+            </center>
+
+            </br>
+
+            <a href="http://landsat.usgs.gov/best_spectral_bands_to_use.php">http://landsat.usgs.gov/best_spectral_bands_to_use.php</a>
+            </br>
+            <a href="http://landsat.usgs.gov/tools_spectralViewer.php">http://landsat.usgs.gov/tools_spectralViewer.php</a>
+            </br>
+
+        </div>
+       -->
+    </div>
+
+    <canvas id="redCanvas" width="7771" height="7591" style="display: none; border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+    <canvas id="greenCanvas" width="7771" height="7591" style="display: none; border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+    <canvas id="blueCanvas" width="7771" height="7591" style="display: none; border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+
+    <img id="img_b1" src="jpegs3/b1.jpg" width="7771" height="7591" style="display: none;"></img>
+    <img id="img_b2" src="jpegs3/b2.jpg" width="7771" height="7591" style="display: none;"></img>
+    <img id="img_b3" src="jpegs3/b3.jpg" width="7771" height="7591" style="display: none;"></img>
+    <img id="img_b4" src="jpegs3/b4.jpg" width="7771" height="7591" style="display: none;"></img>
+    <img id="img_b5" src="jpegs3/b5.jpg" width="7771" height="7591" style="display: none;"></img>
+    <img id="img_b6" src="jpegs3/b6.jpg" width="7771" height="7591" style="display: none;"></img>
+    <img id="img_b7" src="jpegs3/b7.jpg" width="7771" height="7591" style="display: none;"></img>
+    <img id="img_b8" src="jpegs3/b8.jpg" width="7771" height="7591" style="display: none;"></img>
+    <img id="img_b9" src="jpegs3/b9.jpg" width="7771" height="7591" style="display: none;"></img>
+    <img id="img_b10" src="jpegs3/b10.jpg" width="7771" height="7591" style="display: none;"></img>
+    <img id="img_b11" src="jpegs3/b11.jpg" width="7771" height="7591" style="display: none;"></img>
+
+
+<script>
+
+    /*
+    
+    Bands                                   Wavelengths     Resolution (meters)
+    -----------------------------------------------------------
+    Band 1 - Coastal aerosol 	            0.43 - 0.45 	30
+    Band 2 - Blue 	                        0.45 - 0.51 	30
+    Band 3 - Green 	                        0.53 - 0.59 	30
+    Band 4 - Red 	                        0.64 - 0.67 	30
+    Band 5 - Near Infrared (NIR) 	        0.85 - 0.88 	30
+    Band 6 - SWIR 1 	                    1.57 - 1.65 	30
+    Band 7 - SWIR 2 	                    2.11 - 2.29 	30
+    Band 8 - Panchromatic 	                0.50 - 0.68 	15
+    Band 9 - Cirrus 	                    1.36 - 1.38 	30
+    Band 10 - Thermal Infrared (TIRS) 1 	10.60 - 11.19 	100
+    Band 11 - Thermal Infrared (TIRS) 2 	11.50 - 12.51 	100
+
+    */
+    
+    document.getElementById('redcoeff').onkeydown = function(event) {
+        if (event.keyCode == 13) {
+            displayImage();
+        }
+    }
+    
+    document.getElementById('greencoeff').onkeydown = function(event) {
+        if (event.keyCode == 13) {
+            displayImage();
+        }
+    }
+    
+    document.getElementById('bluecoeff').onkeydown = function(event) {
+        if (event.keyCode == 13) {
+            displayImage();
+        }
+    }
+    
+    document.getElementById('xoffset').onkeydown = function(event) {
+        if (event.keyCode == 13) {
+            displayImage();
+        }
+    }
+    
+    document.getElementById('yoffset').onkeydown = function(event) {
+        if (event.keyCode == 13) {
+            displayImage();
+        }
+    }
+    
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    
+    var redcanvas = document.getElementById('redCanvas');
+    var redctx=redcanvas.getContext("2d");
+    
+    var greencanvas = document.getElementById('greenCanvas');
+    var greenctx=greencanvas.getContext("2d");
+    
+    var bluecanvas = document.getElementById('blueCanvas');
+    var bluectx=bluecanvas.getContext("2d");
+    
+    var bands = {};
+    
+    bands['b1'] = document.getElementById("img_b1");
+    bands['b2'] = document.getElementById("img_b2");
+    bands['b3'] = document.getElementById("img_b3");
+    bands['b4'] = document.getElementById("img_b4");
+    bands['b5'] = document.getElementById("img_b5");
+    bands['b6'] = document.getElementById("img_b6");
+    bands['b7'] = document.getElementById("img_b7");
+    bands['b8'] = document.getElementById("img_b8");
+    bands['b9'] = document.getElementById("img_b9");
+    bands['b10'] = document.getElementById("img_b10");
+    bands['b11'] = document.getElementById("img_b11");
+    
+    //ctx.fillStyle="red";
+    //ctx.fillRect(10,10,50,50);
+
+    function getValue(name) {
+        var elements = document.getElementsByName(name);
+        var value;
+        for(var i = 0; i < elements.length; i++){
+            if(elements[i].checked){
+                value = elements[i].value;
+            }
+        }
+        return value;
+    }
+
+    function displayImage()
+    {
+    
+        var width = c.width;
+        var height = c.height;
+        
+        console.log('width: '+width+', height: '+height);
+        
+        var rval = getValue('redband');
+        var gval = getValue('greenband');
+        var bval = getValue('blueband');
+        
+        var xoffset = document.getElementById("xoffset").value;//-1900; //-4400
+        var yoffset = document.getElementById("yoffset").value;//-3700; //-1400
+        
+        redctx.drawImage(bands[rval], xoffset, yoffset);
+        greenctx.drawImage(bands[gval], xoffset, yoffset);
+        bluectx.drawImage(bands[bval], xoffset, yoffset);
+        
+        var redData = redctx.getImageData(0,0,width,height);
+        var greenData = greenctx.getImageData(0,0,width,height);
+        var blueData = bluectx.getImageData(0,0,width,height);
+        
+        /*
+        var i = -4;
+        var rcount=0,gcount=0,bcount=0,acount=0,loopcount=0;
+        var length = redData.data.length;
+        while ((i += 4) < length) {
+            rcount += redData.data[i+0];
+            gcount += redData.data[i+1];
+            bcount += redData.data[i+2];
+            acount += redData.data[i+3];
+            loopcount += 1;
+        }
+        */
+        
+        //console.log('loopcount: ' + loopcount + 'r: ' + rcount + ', g: ' + gcount + ', b: ' + bcount + ', a:', acount);
+        
+        //console.log(redData);
+        
+        //ctx.drawImage(img_b1, 0, 0);
+        //var imgData = ctx.getImageData(0,0,width,height);
+        var imgData = ctx.createImageData(width,height);
+        //ctx.putImageData(imgData,0,0);
+        
+        var R_COEFF = document.getElementById("redcoeff").value;;
+        var G_COEFF = document.getElementById("greencoeff").value;
+        var B_COEFF = document.getElementById("bluecoeff").value;;
+        
+        var i = -4;
+        var count = 0;
+        var length = redData.data.length;
+        var newData = [];
+        while ((i += 4) < length) {
+            count++;
+            imgData.data[i+0] = redData.data[i+0]*R_COEFF;     // red
+            imgData.data[i+1] = greenData.data[i+0]*G_COEFF;   // green
+            imgData.data[i+2] = blueData.data[i+0]*B_COEFF;    // blue
+            imgData.data[i+3] = 255;                                   // alpha
+            count += 1;
+        }
+        
+        console.log('loop count: ' + count);
+        
+        // copy data over
+        //imgData.data = [].concat(newData);
+        
+        ctx.putImageData(imgData,0,0);
+    }
+    
+    displayImage();
+    
+</script>
+
+</body>
+</html>
